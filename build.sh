@@ -24,7 +24,6 @@ rm composer-setup.php
  
 # INSTALL COMPOSER DEPENDENCIES
 php composer.phar install
-php composer.phar require statamic/ssg
  
 # GENERATE APP KEY
 php artisan key:generate
