@@ -26,6 +26,7 @@ rm composer-setup.php
 php composer.phar install
  
 # GENERATE APP KEY
+cp .env.example .env
 php artisan key:generate
  
 # BUILD STATIC SITE
