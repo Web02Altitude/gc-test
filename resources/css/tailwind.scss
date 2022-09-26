@@ -1,0 +1,29 @@
+@import "tailwindcss/base";
+
+/*@import "site.scss";*/
+
+$nav-background: #323232;
+//$pagination-background: #323232;
+
+@import "lightningbox/src/style.scss";
+.lb-modal-next,
+.lb-modal-prev {
+    background: rgba(#9a9a9a, 0.6);
+}
+.lb-modal-image-active {
+    background-size: contain;
+}
+/*@import "lightningbox/dist/lightningbox.min.css";*/
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+img {
+    -webkit-user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    touch-callout: none !important;
+}

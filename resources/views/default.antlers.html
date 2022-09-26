@@ -1,0 +1,32 @@
+{{# {{ dump }} #}}
+{{#
+ - title
+ - description
+ - images
+    - url
+    - alt
+
+#}}
+
+<section>
+<h1 class="py-4 mb-4 text-5xl">{{ title }}</h1>
+<p class="px-3 mb-4 text-base">{{ description }}</p>
+</section>
+
+<section>
+    <div class="gallery">
+        {{ images_galerie }}
+          <a class="gallery_element" href="{{ glide:url mark=watermark:url markpad="20" markpos="bottom-left" markw="15w" markalpha="60" }}">
+              <figure class="mb-4 shadow-xl">
+                {{ responsive:url glide:mark=watermark:url glide:markpad="20" glide:markpos="bottom-left" glide:markw="15w" glide:markalpha="60" :alt=alt }}
+                  {{ if alt }}
+                    <figcaption class="p-3 text-white bg-gray-900">{{ alt }}</figcaption>
+                  {{ else }}
+                    <figcaption class="p-3 text-white bg-gray-900">Element n°{{ index | +:1 }}</figcaption>
+                  {{ endif }}
+              </figure>
+          </a>
+    {{#         <img src="{{ url }}" alt="{{ alt }}"> #}}
+        {{ /images_galerie }}
+    </div>
+</section>

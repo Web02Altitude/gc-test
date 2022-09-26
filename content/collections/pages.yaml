@@ -1,0 +1,14 @@
+title: Galeries
+template: default
+layout: layout
+revisions: false
+route: 'galerie/{year}/{month}/{slug}'
+date: true
+sort_dir: desc
+date_behavior:
+  past: public
+  future: unlisted
+preview_targets:
+  -
+    label: Galerie
+    url: '{permalink}'

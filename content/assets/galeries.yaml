@@ -1,0 +1,7 @@
+title: Galeries
+disk: assets
+allow_uploads: true
+allow_downloading: true
+allow_renaming: false
+allow_moving: false
+create_folders: false

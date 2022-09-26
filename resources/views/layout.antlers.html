@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="{{ site:short_locale }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ title ?? site:name }}</title>
+        {{ vite src="resources/css/tailwind.scss|resources/js/site.js" }}
+    </head>
+    <body class="font-sans leading-normal text-gray-800 bg-gray-100">
+        <div class="flex flex-col items-center max-w-xl px-2 mx-auto justify-top lg:min-h-screen">
+            {{ template_content }}
+        </div>
+        <footer class="p-3 pt-5 text-center bg-white bg-grey-900">Copyright © {{ now format="Y" }} <a href="https://altitudegp.com" target="_blank" rel="noreferrer noopener nofollow">Altitude Design</a> | Tous droits réservés.</footer>
+    </body>
+</html>
