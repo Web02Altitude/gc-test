@@ -28,6 +28,9 @@ php composer.phar install
 # GENERATE APP KEY
 cp .env.example .env
 php artisan key:generate
+
+# Execute package compilation
+npm run-script build
  
 # BUILD STATIC SITE
 php please ssg:generate
