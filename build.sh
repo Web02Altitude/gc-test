@@ -30,6 +30,7 @@ cp .env.example .env
 php artisan key:generate
 
 # Execute package compilation
+npm i
 npm run-script build
  
 # BUILD STATIC SITE
