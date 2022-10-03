@@ -1,6 +1,7 @@
 title: Galeries
 template: default
 layout: layout
+mount: home
 revisions: false
 route: 'galerie/{year}/{month}/{slug}'
 date: true
