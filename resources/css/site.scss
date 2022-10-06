@@ -1,4 +1,34 @@
+// lightningbox
+/* replaced by glightbox
+$nav-background: #323232;
+// $pagination-background: #323232;
+@import "lightningbox/src/style.scss";
+// @import "lightningbox/dist/lightningbox.min.css";
+.lb-modal-next,
+.lb-modal-prev {
+    background: rgba(#9a9a9a, 0.6);
+}
+.lb-modal-image-active {
+    background-size: contain;
+}
+*/
 
+// glightbox
+@import "glightbox/dist/css/glightbox.min.css";
 
-//$pagination-background: #323232;
-//@import "lightningbox/dist/lightningbox.min.css";
+// Alpinne
+[x-cloak] {
+    display: none !important;
+}
+
+// Global
+/* for context menu prevention
+img {
+    -webkit-user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    touch-callout: none !important;
+}
+*/

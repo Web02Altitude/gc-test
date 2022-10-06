@@ -68,6 +68,7 @@ return [
 
         'presets' => [
             // 'small' => ['w' => 200, 'h' => 200, 'q' => 75, 'fit' => 'crop'],
+            'thumbnail' => ['w' => 250, 'h' => 250, 'q' => 75, 'fit' => 'crop'],
         ],
 
         // 'watermarks_path' => public_path('assets/watermarks'), **fonctionne pas**
