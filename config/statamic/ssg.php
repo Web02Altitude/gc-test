@@ -42,6 +42,7 @@ return [
         public_path('css') => 'css',
         public_path('js') => 'js',
         public_path('build') => 'build',
+        storage_path('app/public/storage') => 'storage',
     ],
 
     'symlinks' => [
