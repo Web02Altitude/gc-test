@@ -1,13 +1,14 @@
 title: Galeries
+amp: true
 template: default
 layout: layout
 revisions: false
-route: 'galerie/{year}/{month}/{slug}'
+route: '{year}/{month}/{slug}'
 date: true
 sort_dir: desc
 date_behavior:
   past: public
-  future: unlisted
+  future: private
 preview_targets:
   -
     label: Galerie
