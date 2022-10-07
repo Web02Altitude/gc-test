@@ -7,13 +7,49 @@
     <title>{{ title ?? site:name }}</title>
     {{ vite src="resources/css/tailwind.scss|resources/css/site.scss" }}
 </head>
-<body class="flex flex-col min-h-screen font-sans leading-normal text-gray-800 bg-gray-100 dark:bg-gray-800 dark:text-gray-100">
-    <div class="flex flex-col items-center flex-1 px-2 mx-auto max-w-screen-2xl justify-top">
+<body
+    class="flex flex-col min-h-screen font-sans leading-normal text-gray-800 bg-gray-100 dark:bg-gray-800 dark:text-gray-100">
+    <div class="flex flex-col items-center flex-1 w-10/12 px-2 mx-auto lg:w-9/12 max-w-screen-2xl justify-top">
         {{ template_content }}
     </div>
     <footer class="p-3 pt-5 text-center bg-white dark:bg-gray-900 dark:text-white">
-        <p>Copyright © {{ now format="Y" }} <a href="https://altitudegp.com" target="_blank" rel="noreferrer noopener nofollow">Altitude Design</a> | Tous droits réservés.</p>
+        <p>Copyright © {{ now format="Y" }} <a href="https://altitudegp.com" target="_blank"
+                rel="noreferrer noopener nofollow">Altitude Design</a> | Tous droits réservés.</p>
     </footer>
     {{ vite src="resources/js/site.js" }}
+    <script>
+        function tabs() {
+            return {
+                tab: '',
+                init() {
+                    if (window.location.hash) {
+                        const hash = window.location.hash
+                        if (hash.substring(1).match(/^(v\d)$/g) && document.getElementById(hash.substring(1))) {
+                            this.tab = hash
+                        } else {
+                            this.tab = '#v1'
+                        }
+                    } else {
+                        this.tab = '#v1'
+                    }
+                    let url_ob = new URL(document.URL)
+                    url_ob.hash = this.tab
+                    let new_url = url_ob.href
+                    document.location.href = new_url
+                },
+                setTab(e) {
+                    this.tab = e
+                    let url_ob = new URL(document.URL)
+                    url_ob.hash = e
+                    let new_url = url_ob.href
+                    document.location.href = new_url
+                },
+                visible(e) {
+                    if (this.tab == e) return true
+                    else return false
+                }
+            }
+        }
+    </script>
 </body>
 </html>
