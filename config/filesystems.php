@@ -61,6 +61,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'galeries' => [
+            'driver' => 'scoped',
+            'disk' => 'public',
+            'prefix' => 'media',
+        ],
+
     ],
 
     /*
