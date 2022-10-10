@@ -8,6 +8,7 @@ import GLightbox from 'glightbox';
 const lightbox = GLightbox({
   selector: '.gallery_element',
   loop: true,
+  autoplayVideos: true,
   // skin: 'mon-theme',
   openEffect: 'zoom',
   closeEffect: 'fade',

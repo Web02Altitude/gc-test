@@ -12,7 +12,9 @@
             class="block w-32 p-2.5 text-gray-900 border border-gray-300 rounded-lg form-select bg-gray-50 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             x-on:change="setTab($event.target.options[$event.target.selectedIndex].value)">
             {{ version }}
-              <option value="#v{{ count }}" x-bind:selected="visible('#v{{ count }}')">{{ libelle ?? 'Version'.count }}</option>
+              <option value="#v{{ count }}" x-bind:selected="visible('#v{{ count }}')">
+                {{ libelle ?? count | ensure_left:Version&nbsp; }}
+              </option>
             {{ /version }}
           </select>
         </div>
@@ -23,7 +25,8 @@
               <a href="#v{{ count }}" id="tab{{ count }}" class="inline-block p-4 border-b-2"
                 x-bind:class="visible('#v{{ count }}') ? 'text-blue-600 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500' : 'border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"
                 aria-current="page" role="tab" aria-controls="v{{ count }}"
-                x-bind:aria-selected="visible('#v{{ count }}')" x-on:click.prevent="setTab('#v{{ count }}')">{{ libelle ?? 'Version'.count }}</a>
+                x-bind:aria-selected="visible('#v{{ count }}')"
+                x-on:click.prevent="setTab('#v{{ count }}')">{{ libelle ?? count | ensure_left:Version&nbsp; }}</a>
             </li>
           {{ /version }}
         </menu>
@@ -32,18 +35,32 @@
   </header>
   <main class="w-full">
     {{ version }}
-      <div id="v{{ count }}" class="flex flex-wrap w-full" aria-labelledby="tab{{ count }}"
-        x-show="visible('#v{{ count }}')" x-cloak>
-        {{ if total_results > 1 }}
-          <div class="w-full prose dark:prose-invert max-w-none">
-            <h2>{{ libelle ?? 'Version' + count }}</h2>
-          </div>
-        {{ /if }}
-        {{ galerie }}
-          <div class="w-full px-2.5 my-2.5 sm:w-1/2 xl:my-4 xl:px-4">
-            <a class="gallery_element group"
-              href="{{ glide:url mark="/storage/watermarks/logo_watermark_2.png" markpos="bottom-left" markw="100w" }}"
-              data-description="{{ alt ?? 'Elément n°' + count }}">
+      {{ scope:stuff }}
+        <div id="v{{ count }}" class="flex flex-wrap w-full" aria-labelledby="tab{{ count }}"
+          x-show="visible('#v{{ count }}')" x-cloak>
+          {{ if total_results > 1 }}
+            <div class="w-full prose dark:prose-invert max-w-none">
+              <h2>{{ libelle ?? count | ensure_left:Version&nbsp; }}</h2>
+            </div>
+          {{ /if }}
+          {{ galerie }}
+            <div class="w-full px-2.5 my-2.5 sm:w-1/2 xl:my-4 xl:px-4">
+              {{ if is_image }}
+                {{ if watermarke }}
+                  <a class="gallery_element group"
+                    href="{{ glide:url mark="/storage/watermarks/logo_watermark_2.png" markpos="bottom-left" markw="100w" | obfuscate }}"
+                    data-title="{{ alt ?? count | ensure_left:Elément&nbsp;n&deg;&nbsp; }}" data-type="image"
+                    data-gallery="gallery{{ stuff:count }}">
+                {{ else }}
+                  <a class="gallery_element group" href="{{ glide:url | obfuscate }}"
+                    data-title="{{ alt ?? count | ensure_left:Elément&nbsp;n&deg;&nbsp; }}" data-type="image"
+                    data-gallery="gallery{{ stuff:count }}">
+                {{ /if }}
+              {{ else }}
+                <a class="gallery_element group" href="{{ glide:url | obfuscate }}"
+                  data-title="{{ alt ?? count | ensure_left:Elément&nbsp;n&deg;&nbsp; }}" data-type="video"
+                  data-gallery="gallery{{ stuff:count }}">
+              {{ /if }}
               <figure class="shadow-xl">
                 <div class="relative">
                   <div
@@ -54,15 +71,31 @@
                       <circle cx="12" cy="12" r="3"></circle>
                     </svg>
                   </div>
-                  {{ responsive:url glide:mark="/storage/watermarks/logo_watermark_2.png" glide:markpos="bottom-left" glide:markw="100w" alt={alt ?? 'Elément n°' + count} class="w-full" }}
+                  {{ if is_image }}
+                    {{ if watermarke }}
+                      {{ responsive:url glide:mark="/storage/watermarks/logo_watermark_2.png" glide:markpos="bottom-left" glide:markw="100w" alt="{{alt ?? count | ensure_left:Elément&nbsp;n&deg;&nbsp;}}" class="w-full" }}
+                    {{ else }}
+                      {{ responsive:url alt="{{alt ?? count | ensure_left:Elément&nbsp;n&deg;&nbsp;}}" class="w-full" }}
+                    {{ /if }}
+                  {{ else }}
+                    {{ poster_video }}
+                      {{ if watermarke }}
+                        {{ responsive:url glide:mark="/storage/watermarks/logo_watermark_2.png" glide:markpos="bottom-left" glide:markw="100w" alt="{{alt ?? count | ensure_left:Elément&nbsp;n&deg;&nbsp;}}" class="w-full" }}
+                      {{ else }}
+                        {{ responsive:url alt="{{alt ?? count | ensure_left:Elément&nbsp;n&deg;&nbsp;}}" class="w-full" }}
+                      {{ /if }}
+                    {{ /poster_video }}
+                  {{ /if }}
                 </div>
                 <figcaption class="p-3 font-semibold text-white bg-gray-900 dark:text-gray-900 dark:bg-white">
-                  {{ alt ?? 'Elément n°' + count }}</figcaption>
+                  {{ alt ?? count | ensure_left:Elément&nbsp;n&deg;&nbsp; }}
+                </figcaption>
               </figure>
-            </a>
-          </div>
-        {{ /galerie }}
-      </div>
+              </a>
+            </div>
+          {{ /galerie }}
+        </div>
+      {{ /scope:stuff }}
     {{ /version }}
   </main>
 </div>
